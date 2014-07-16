@@ -20,9 +20,9 @@ Other Requirements:
 Installation Instructions
 - 1. Create a database on your MYSQL Server
 - 2. Import contest tables using -sql/tables-linkshare.sql- file *IP table is over 7MB, so be patient.
-- 2. Set up database connection credentials and other contest details in -lib/config-sample.inc.php- file
+- 3. Set up database connection credentials and other contest details in -lib/config-sample.inc.php- file
 - 4. Rename file -lib/config-sample.inc.php- to -lib/config.inc.php-
-- 4. Create Header image (images/header.jpg - 990px x 237px) and Thumb image (images/thumb.jpg - 200px x 200px) for contest
-- 5. Tweak page text by editing -index.php- in 2 locations (main text and above form text)
+- 5. Create Header image (images/header.jpg - 990px x 237px) and Thumb image (images/thumb.jpg - 200px x 200px) for contest
+- 6. Tweak page text by editing -index.php- in 2 locations (main text and above form text)
 
 
