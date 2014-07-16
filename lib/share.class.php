@@ -156,8 +156,31 @@ class Share {
 			//if ( getenv( 'HTTP_CLIENT_IP' ) ) { $ip = getenv( 'HTTP_CLIENT_IP' ); }
 			$ip = getenv( 'REMOTE_ADDR' );
 		}
-		
+
 		return $ip;
+	}
+
+
+	/**
+	 * Check location of user IP
+	 * @param  string $ipAddress Users ip address
+	 * @return boolean           
+	 */
+	function isGoodIP($ipAddress){
+		$ip = ip2long($ipAddress);
+		$q = mysql_query("SELECT country_short
+			FROM ip_db 
+			WHERE num_2 > '" . $ip . "'
+			ORDER BY num_2 asc limit 0,1
+			");
+		$row = mysql_fetch_assoc($q);
+		if($row['country_short']=='CA' || $row['country_short']=='MX'){
+			return true;	
+		}
+		else {
+			return false;
+		}
+		
 	}
 
 
@@ -168,23 +191,28 @@ class Share {
 	 */
 	function trackVote($entrant){
 		$ip = $this->getUserIP();
-		$q = mysql_query("SELECT id FROM " . VOTER_TABLE . "
-			WHERE ip_address = '". $ip ."'
-			");
-		if(mysql_num_rows($q)>0){
-			$voteMsg = '<p class="vote-error"><i class="fa fa-thumbs-down"></i> Sorry, vote could not be registered. It appears this IP address has already voted today. Please come back tomorrow!</p>';
+		if($this->isGoodIP($ip)){
+			$q = mysql_query("SELECT id FROM " . VOTER_TABLE . "
+				WHERE ip_address = '". $ip ."'
+				");
+			if(mysql_num_rows($q)>0){
+				$voteMsg = '<p class="vote-error"><i class="fa fa-thumbs-down"></i> Sorry, vote could not be registered. It appears this IP address has already voted today. Please come back tomorrow!</p>';
+			}
+			else {
+				$q = mysql_query("INSERT into " . VOTER_TABLE . "
+					(date_entered,ip_address)
+					values (NOW(),'".$ip."')
+					");
+				$q2 = mysql_query("UPDATE " . ENTRANT_TABLE . "
+					set votes=votes+1
+					WHERE id = '". $entrant['id'] . "'
+					");
+				$voteMsg = '<p class="vote-success"><i class="fa fa-thumbs-up"></i> Thanks! You just helped <strong>'. $entrant['fname'].' '.substr($entrant['lname'],0,1). '.</strong></p>';
+			
+			}
 		}
 		else {
-			$q = mysql_query("INSERT into " . VOTER_TABLE . "
-				(date_entered,ip_address)
-				values (NOW(),'".$ip."')
-				");
-			$q2 = mysql_query("UPDATE " . ENTRANT_TABLE . "
-				set votes=votes+1
-				WHERE id = '". $entrant['id'] . "'
-				");
-			$voteMsg = '<p class="vote-success"><i class="fa fa-thumbs-up"></i> Thanks! You just helped <strong>'. $entrant['fname'].' '.substr($entrant['lname'],0,1). '.</strong></p>';
-		
+			$voteMsg = '<p class="vote-error"><i class="fa fa-thumbs-down"></i> Sorry, vote could not be registered. It appears this IP address is located out of the approved voting region.</p>';
 		}
 		
 		//$voteMsg = '<p class="vote-error"><i class="fa fa-thumbs-down"></i> Sorry, vote could not be registered. It appears you are voting from outside of our approved regions.</p>';

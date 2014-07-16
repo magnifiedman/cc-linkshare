@@ -33,6 +33,7 @@ if(isset($id) && $id!=0){
 		$voteMsg = $s->trackVote($entrant);
 		$step=3;
 		$html = $s->getEntryForm();
+		$caption = 'Vote%20for%20'.$entrant['fname'];
 	}
 	else {
 		header("Location: index.php");
