@@ -163,6 +163,7 @@ class Share {
 
 	/**
 	 * Check location of user IP
+	 * IF YOU WISH TO BYPASS IP CHECKING, PLEASE CHANGE RETURN VALUES IN ELSE LOOP BELOW
 	 * @param  string $ipAddress Users ip address
 	 * @return boolean           
 	 */
@@ -178,7 +179,8 @@ class Share {
 			return true;	
 		}
 		else {
-			return false;
+			// return true; // uncomment beginning of this line to bypass ip checking
+			return false; // comment this line out to bypass ip checking
 		}
 		
 	}

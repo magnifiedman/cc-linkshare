@@ -104,9 +104,9 @@ include('CCOMRheader.template'); // do not modify this line
 				</div>
 	    <?php } ?>
 
-	    <h2>Wanna win a trip to Yuma?</h2>
-	    <p>MIX 96.9 wants to treat you to the magic of both Disney Theme Parks. At <em>Disneyland<sup>&reg;</sup></em> Park, experience the return of Big Thunder Mountain Railroad with new surprises. Then, catch the Fantasyland Theater musical stage show starring Mickey Mouse.</p>
-	    <p class="maintext">Plus, explore the reimagined Disney California Adventure<sup>&reg;</sup> Park, including the high-octane thrills of Cars Land and the nighttime spectacular World of Color! And don't forget all the food, fun and shopping of the Downtown Disney<sup>&reg;</sup> District. So get ready to see why the happiest place on earth keeps getting happier!</p> 
+		<!-- EDIT PAGE TEXT 1 -->
+	    <h2>Contest Header Text</h2>
+	    <p>Conettst body text here.</p> 
 	  
 	</div>
 
@@ -145,8 +145,11 @@ include('CCOMRheader.template'); // do not modify this line
     	// form
     	if($step==1 || $step==3){
     		?>
+			
+			<!-- EDIT PAGE TEXT 2 -->
 			<h3><i class="fa fa-arrow-down"></i> Enter Below</h3>
-    		<p class="maintext">What is your favorite <em>Disneyland<sup>&reg;</sup></em> Resort show or attraction? Enter below and tell us in 196 characters or less. When you do, you'll be given your very own MIX 96.9 Fan Page. Then, share the link with everyone you know and have them visit it daily. The contestant who has the most unique views of their Fan Page by 7:00 PM on June 6th will win a Vacation Package to the <em>Disneyland<sup>&reg;</sup></em> Resort. See official rules for details.</p>
+    		<p>Text above form.</p>
+    		
     		<?php
     		echo $html;
     	}
