@@ -1,6 +1,6 @@
 cc-linkshare
 ======================
-traviswachendorf@clearchannel.com
+traviswachendorf@iheartmedia.com
 
 * This app will be programmed in PHP 4.4.9 *
 
@@ -24,5 +24,13 @@ Installation Instructions
 - 4. Rename file -lib/config-sample.inc.php- to -lib/config.inc.php-
 - 5. Create Header image (images/header.jpg - 990px x 237px) and Thumb image (images/thumb.jpg - 200px x 200px) for contest
 - 6. Tweak page text by editing -index.php- in 2 locations (main text and above form text)
+
+To create additional contests
+- 1. Duplicate share contest folder
+- 2. Rename and upload to server in '/common/share/''
+- 3. Duplicate ls_CONTEST_NAME_entrants table
+- 4. Duplicate ls_CONTEST_NAME_voters table
+- 5. Edit 'lib/config.inc.php' to set new table names and contest details
+- 6. Edit 'index.php' file to set page text
 
 

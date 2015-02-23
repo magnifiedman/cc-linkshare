@@ -106,7 +106,7 @@ include('CCOMRheader.template'); // do not modify this line
 
 		<!-- EDIT PAGE TEXT 1 -->
 	    <h2>Contest Header Text</h2>
-	    <p>Conettst body text here.</p> 
+	    <p>Contest body text here.</p> 
 	  
 	</div>
 
